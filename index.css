@@ -36,9 +36,6 @@
   align-items: flex-start;
   border-color: transparent;
 }
-.navbar-link1 {
-  text-decoration: none;
-}
 .navbar-text10 {
   color: rgba(255, 255, 255, 1);
   align-self: auto;
@@ -68,7 +65,7 @@
   transition: 0.3s;
   align-items: stretch;
   flex-direction: column;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
 }
 .navbar-branding {
   display: flex;
@@ -85,13 +82,9 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  font-family: 'PressStart2P-Regular';
+  font-family: "PressStart2P";
   color: white;
   cursor: pointer;
-}
-.navbar-icon31 {
-  width: 24px;
-  height: 24px;
 }
 .navbar-nav-links2 {
   gap: var(--dl-space-space-unit);
@@ -126,35 +119,23 @@
 .home-fragment1 {
   display: contents;
 }
-.home-text10 {
-  display: inline-block;
-}
 .home-fragment2 {
   display: contents;
 }
-.home-text13 {
-  display: inline-block;
-}
 .home-fragment3 {
   display: contents;
-}
-.home-text16 {
-  display: inline-block;
 }
 .navbarroot-class-name {
   width: 100%;
   height: auto;
 }
-@media(max-width: 1600px) {
+@media (max-width: 1600px) {
   .navbar-nav-content {
     width: 1088px;
     justify-content: center;
   }
   .navbar-nav-links1 {
     align-self: center;
-  }
-  .navbar-link1 {
-    text-decoration: none;
   }
   .navbar-get-started {
     align-items: center;
@@ -173,12 +154,12 @@
     text-decoration: none;
   }
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .navbar-hamburger {
     display: flex;
   }
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .navbar-navbar {
     height: 51px;
     padding-top: 36px;
@@ -208,7 +189,7 @@
     justify-content: center;
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .navbar-navbar {
     height: 70px;
     padding-bottom: 0px;
@@ -231,32 +212,23 @@
   overflow-x: hidden;
   align-items: center;
   flex-direction: column;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
 }
 .home-fragment1 {
   display: contents;
 }
-.home-text10 {
-  display: inline-block;
-}
 .home-fragment2 {
   display: contents;
 }
-.home-text13 {
-  display: inline-block;
-}
 .home-fragment3 {
   display: contents;
-}
-.home-text16 {
-  display: inline-block;
 }
 .home-section {
   width: 100%;
   height: 877px;
   display: flex;
   align-items: center;
-  border-color: #51515A;
+  border-color: #51515a;
   padding-left: var(--dl-space-space-oneandhalfunits);
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
@@ -297,7 +269,7 @@
   font-size: 40px;
   font-style: normal;
   text-align: center;
-  font-family: "PressStart2P-Regular";
+  font-family: "PressStart2P";
   font-weight: 600;
 }
 .home-buttons {
@@ -310,7 +282,7 @@
   width: 473px;
   padding-top: var(--dl-space-space-unit);
   padding-bottom: var(--dl-space-space-unit);
-  background-color: #2A2A2A;
+  background-color: #2a2a2a;
 }
 .home-text17 {
   color: #ffffff;
@@ -342,7 +314,7 @@
   font-family: "Poppins";
   line-height: 21px;
 }
-@media(max-width: 1600px) {
+@media (max-width: 1600px) {
   .home-hero {
     width: 491px;
   }
@@ -355,7 +327,7 @@
   }
   .home-heading {
     font-size: 40px;
-    font-family: PressStart2P-Regular;
+    font-family: PressStart2P;
   }
   .home-buttons {
     width: 100%;
@@ -368,12 +340,12 @@
     color: rgb(255, 255, 255);
   }
 }
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .home-hero {
     width: 500px;
   }
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .home-section {
     height: 872px;
     padding-left: 0px;
@@ -398,7 +370,7 @@
   .home-heading {
     font-size: 40px;
     text-align: center;
-    font-family: PressStart2P-Regular;
+    font-family: PressStart2P;
   }
   .home-buttons {
     width: 100%;
@@ -409,7 +381,7 @@
     height: auto;
   }
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .home-section {
     height: 841px;
     padding-top: 4px;
@@ -445,7 +417,7 @@
     align-self: center;
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .home-section {
     height: 899px;
   }
@@ -498,7 +470,7 @@
   left: 0;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: width 1000ms, height 1000ms;
+  transition: width 1000ms, height 1000ms, opacity 0.2s ease;
   z-index: 9999;
 }
 
