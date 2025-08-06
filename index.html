@@ -4,14 +4,14 @@
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <link rel="icon" href="css/assets/images/cat.png" />
+    <link rel="icon" href="assets/images/cat.png" />
     <style data-tag="reset-style-sheet">
       html {
         line-height: 1.15;
       }
       body {
         margin: 0;
-        cursor: url("/css/assets/images/cursor.png"), auto;
+        cursor: url("/assets/images/cursor.png"), auto;
       }
       * {
         box-sizing: border-box;
@@ -56,7 +56,7 @@
         <navbar-wrapper class="navbar-wrapper" rootclassname="navbarundefined">
           <!--Navbar component-->
           <header class="navbar-navbar navbarroot-class-name">
-            <img src="css/assets/images/cat.png" class="navbar-branding-logo" />
+            <img src="assets/images/cat.png" class="navbar-branding-logo" />
             <div class="navbar-nav-content">
               <div class="navbar-nav-links1">
                 <span class="nav-link" style="cursor: not-allowed">Labs</span>
@@ -64,7 +64,12 @@
                 <span class="nav-link" style="cursor: not-allowed"
                   >Gallery</span
                 >
-                <span class="nav-link" style="cursor: not-allowed">About</span>
+                <span
+                  class="nav-link"
+                  style="cursor: pointer"
+                  onclick="location.href='pages/about.html'"
+                  >About</span
+                >
               </div>
               <div class="home navbar-get-started">
                 <span class="navbar-text10">Home</span>
@@ -113,7 +118,7 @@
             </div>
             <div id="mobile-menu" class="navbar-mobile-menu">
               <div class="navbar-branding">
-                <img src="css/assets/images/cat.png" class="navbar-image" />
+                <img src="assets/images/cat.png" class="navbar-image" />
                 <div id="close-mobile-menu" class="navbar-container1">
                   <h1 viewBox="0 0 1024 1024">X</h1>
                 </div>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en' oncontextmenu="return false">
+  <head> <!-- Main -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/old/styles.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="icons/favicon.ico">
+    <title>SirKnubble´s Repositories - Map</title>
+  </head>
+
+<body> <!-- Map-Functions, Controls, Markers, Layers -->
+  <div id="nav-bar"> <!-- start nav-bar -->
+    <div id="nav-header" style="position:relative; top: 80%; left: 0; width: 125px; cursor: pointer" onclick="location.href='gallery.html'">&nbsp;<i class="fa-solid fa-images" /><a id="nav-title">&nbsp;Gallery</a></div>
+  </div>
+  <div id="nav-bar"> <!-- start nav-bar -->
+    <div id="nav-header" style="position:relative; top: 90%; left: 0; width: 110px; cursor: pointer" onclick="location.href='../'">&nbsp;<i class="fa-solid fa-house" /><a id="nav-title">&nbsp;Home</a></div>
+  </div>
+  <div id="map" style="width: 100%; height: 100%;background-color:#0fa8d2;">
+  </div>
+  
+  <script>
+    //Initialize  Leaflet map
+    var map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -3,
+      maxBoundsViscosity: 1.0
+    });
+    var bounds = [
+      [0, 0],
+      [8192, 8192]
+    ];
+    map.attributionControl.addAttribution('Original &copy; <a href= "https://github.com/jgardner117">Jesse Gardner</a> | GTA V &copy; <a href= "www.rockstargames.com">Rockstar Games</a>| Icons &copy<a href="https://fontawesome.com/"> Fontawesome</a>');
+    //Initialize each base layer
+    var atlas = L.imageOverlay('images/gtav.png', bounds).addTo(map);
+    var satellite = L.imageOverlay('images/GTAV_SATELLITE_8192x8192.png', bounds)
+    var road = L.imageOverlay('images/GTAV_ROADMAP_8192x8192.png', bounds)
+    map.fitBounds(bounds);
+    map.setMaxBounds(bounds)
+
+    // Load each layer from it's corresponding GeoJSON file
+    var treasure = L.geoJson(null, {
+      pointToLayer: function(feature, latlng) {
+        //Create icon for marker
+        var icn = L.icon({
+          iconUrl: 'icons/schatz.png',
+          iconSize: [40, 40], // size of the icon
+        });
+        var marker = L.marker(latlng, {
+          icon: icn
+        });
+        marker.bindPopup("<font color=white><h4>" + feature.properties.name + '</h4>' + "<img src='" + feature.properties.imgname + "' class='popupImage'></font>");
+        return marker;
+      }
+    })
+    $.getJSON("geojson/treasure.json", function(data) {
+      treasure.addData(data).addTo(map); // WICHTIG !!! .addTo(map), um des beim Start standardmäßig zu aktivieren.
+    });
+
+    var sprayspots = L.geoJson(null, {
+      pointToLayer: function(feature, latlng) {
+        //Create icon for marker
+        var icn = L.icon({
+          iconUrl: 'icons/spray-can-sparkles-solid.svg',
+          iconSize: [35, 35], // size of the icon
+        });
+        var marker = L.marker(latlng, {
+          icon: icn
+        });
+        marker.bindPopup("<font color=white><h4>" + feature.properties.name + '</h4>' + "<img src='" + feature.properties.imgname + "' class='popupImage'></font>");
+        return marker;
+      }
+    })
+    $.getJSON("geojson/Spray Spots.json", function(data) {
+      sprayspots.addData(data); // WICHTIG !!! .addTo(map), um des beim Start standardmäßig zu aktivieren.
+    });
+
+    //Create titles for each layer with mini icons to add to the Control
+    var overlay = {
+      "<img src='icons/schatz.png' align='center' width='30' height='30' /> Treasures": treasure,
+      "<img src='icons/spray-can-sparkles-solid.svg' align='center' width='30' height='30'/> Soon...": sprayspots,
+      
+    };
+
+    //Create titles for each baselayer to add to the Control
+    var baseLayers = {
+      "Atlas": atlas,
+      "Road": road,
+      "Satellite": satellite
+
+    }
+    //Create Control layer and add to map
+    var over = L.control.layers(baseLayers, overlay, {
+      collapsed: false,
+      sortLayers: true
+    }).addTo(map);
+
+    //When the map's base layer is changed, change the color of the background
+    //to match the map
+    map.on('baselayerchange', function(layer) {
+      if (layer.name == "Road") {
+        document.getElementById("map").style.background = "#1862ad";
+      }
+      if (layer.name == "Satellite") {
+        document.getElementById("map").style.background = "#143d6b";
+      }
+      if (layer.name == "Atlas") {
+        document.getElementById("map").style.background = "#0fa8d2";
+      }
+    });
+  </script>
+</body>
+</html>

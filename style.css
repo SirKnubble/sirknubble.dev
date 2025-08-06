@@ -1,13 +1,13 @@
 @font-face {
   font-family: "PressStart2P";
-  src: url("/css/assets/fonts/PressStart2P-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/PressStart2P-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/css/assets/fonts/Poppins-Regular.woff2") format("woff2");
+  src: url("/assets/fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }

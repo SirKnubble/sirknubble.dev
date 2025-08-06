@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<title>Redirecting...</title>
+    <link rel="icon" href="/css/cat.png">
+    <script type="text/javascript">
+
+		// List of URLs
+		var RedirectURLs = {
+			"urls" : [
+				{ "url" : "https://open.spotify.com/playlist/0ttBZ1vEKAEDHDVCNeYNrJ?si=9288a947219240eb" },
+				{ "url" : "https://open.spotify.com/playlist/1ahsi2EsGFoBi4s39nUjcW?si=6508de16601844f8" },
+				{ "url" : "https://open.spotify.com/playlist/6GIvbVclzO5mJNeT0iG9Vk?si=ecf8ed799a0a46f6" },
+                { "url" : "https://open.spotify.com/playlist/3Ie1Qz2hPKP0eSidwbPVE8?si=65d4ff13e2d940cb" },
+                { "url" : "https://open.spotify.com/playlist/7BlAwem28XBvQcY7GPAsOk?si=5a0cc1e532f1450c" }
+			]
+		}
+
+		// Count the number of URLs in list.
+		var Groups = RedirectURLs.urls.length;
+
+		// Randomize number and get the corresponding index for the URL in list.
+		var gotoUrl = RedirectURLs.urls[GetRandomNumber(Groups)].url
+
+	    // Perform redirection.
+		if (window.location.search == "?debug") {
+			// Debug mode: If user supplies a ?debug querystring,
+			// then only show the redirect URL, but don't actually redirect.
+			document.write("Redirect URL: " + gotoUrl);
+		} else {
+			// Redirect the user to the new URL.
+			document.location = gotoUrl;
+		}
+
+		// Perform randomization and save it to a cookie.
+		function GetRandomNumber(Groups) {
+			// Has cookie been set?
+			var rndIndex = null;
+			if (GetCookie() != "") {
+				// Yes, get randomization from cookie.
+				rndIndex = GetCookie()
+			} else {
+				// No, set random value to cookie.
+				rndIndex = Math.floor((Math.random() * Groups));
+				SetCookie(rndIndex, 30) // Set cookie for 30 days.
+			}
+			return rndIndex
+		}
+
+		// Set cookie with randomization value.
+		function SetCookie(CookieValue, DaysUntilExpire) {
+			var d = new Date();
+			d.setTime(d.getTime() + (DaysUntilExpire * 24 * 60 * 60 * 1000));
+			document.cookie = "rnd=" + CookieValue + ";expires=" + d.toUTCString();
+		}
+
+		// Get cookie with randomization value. Return empty string if not set.
+		function GetCookie() {
+			var ca = document.cookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') c = c.substring(1);
+				if (c.indexOf("rnd=") == 0) return c.substring(4, c.length);
+			}
+			return "";
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>
