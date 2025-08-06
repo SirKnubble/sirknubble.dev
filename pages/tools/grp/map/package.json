@@ -1,20 +1,3 @@
-{
-  "name": "planical-modern-template",
-  "version": "1.0.0",
-  "dependencies": {
-    "blueimp-gallery": "^3.4.0",
-    "parcel-bundler": "^1.6.1",
-    "prettier": "^3.3.2"
-  },
-  "scripts": {
-    "build": "vite build"
-  },
-  "description": "## Structure",
-  "main": "main.js",
-  "devDependencies": {
-    "vite": "^6.3.5"
-  },
-  "keywords": [],
-  "author": "SirKnubble",
-  "license": "ISC"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7859ec750dd9dd4fd17893d96e58799f563cf15de4c76b419fb01122a0f2691f
+size 411

@@ -1,7 +1,3 @@
-{
-  "dependencies": {
-    "discord.js": "^14.19.3",
-    "dotenv": "^16.5.0",
-    "graphql-request": "^7.1.2"
-  }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:29a26d1cee2c1ee83048ee8c8637684433eb068dcccfc104ec5783477ff3c981
+size 115

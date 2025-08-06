@@ -1,17 +1,3 @@
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Spray Spot 1",
-        "imgname":"images/carwash/carwashstrawberry.png",
-        "ptype": "Spray Spot"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [3790.625, 1749.25]
-      }
-    }
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:8937d0750327df9caad6c2f3822fef7235cc6410cb3ebfe731813b68914ba2ae
+size 356
