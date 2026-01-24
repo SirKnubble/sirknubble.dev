@@ -27,7 +27,7 @@ Sentry.onLoad(function () {
           messagePlaceholder:
             "What doesn't work?\nWhere is room for improvement?",
           successMessageText: "Thank you for your feedback!",
-        })
+        }),
       );
     })
     .catch(() => {
@@ -75,3 +75,78 @@ document.addEventListener("mouseenter", () => {
 navlinks.forEach((li, i) => {
   li.style.animationDelay = 0 + i * 140 + "ms";
 });
+
+// const musicList = [
+//   "assets/music/SULTAN.mp3",
+//   "assets/music/Jammin.mp3",
+//   "assets/music/CLUBBED TO DEATH.mp3",
+//   "assets/music/Wicked Game.mp3",
+//   "assets/music/Banger!.mp3",
+// ];
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const audio = document.getElementById("background-music");
+//   const playButton = document.getElementById("play-button");
+//   const prevButton = document.getElementById("prev-button");
+//   const nextButton = document.getElementById("next-button");
+//   const volumeSlider = document.getElementById("volume-slider");
+//   const progressBar = document.getElementById("progress-bar");
+//   const songTitle = document.getElementById("song-title");
+//   let isPlaying = false;
+//   let currentIndex = Math.floor(Math.random() * musicList.length); // Start with random
+
+//   // Initial setup
+//   if (musicList.length > 0) {
+//     loadSong(currentIndex);
+//   }
+//   audio.volume = volumeSlider.value;
+
+//   function loadSong(index) {
+//     audio.src = musicList[index];
+//     audio.load();
+//     songTitle.textContent = musicList[index]
+//       .split("/")
+//       .pop()
+//       .replace(".mp3", "");
+//   }
+
+//   playButton.addEventListener("click", () => {
+//     if (isPlaying) {
+//       audio.pause();
+//       playButton.textContent = "▶";
+//     } else {
+//       audio.play();
+//       playButton.textContent = "⏸";
+//     }
+//     isPlaying = !isPlaying;
+//   });
+
+//   prevButton.addEventListener("click", () => {
+//     currentIndex = Math.floor(Math.random() * musicList.length);
+//     loadSong(currentIndex);
+//     if (isPlaying) audio.play();
+//   });
+
+//   nextButton.addEventListener("click", () => {
+//     currentIndex = Math.floor(Math.random() * musicList.length);
+//     loadSong(currentIndex);
+//     if (isPlaying) audio.play();
+//   });
+
+//   volumeSlider.addEventListener("input", () => {
+//     audio.volume = volumeSlider.value;
+//   });
+
+//   // Update progress bar
+//   audio.addEventListener("timeupdate", () => {
+//     if (audio.duration > 0) {
+//       const progress = (audio.currentTime / audio.duration) * 100;
+//       progressBar.value = progress;
+//     }
+//   });
+
+//   // Automatisch nächstes Lied nach Ende
+//   audio.addEventListener("ended", () => {
+//     nextButton.click();
+//   });
+// });
