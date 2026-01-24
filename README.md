@@ -1,40 +1,40 @@
 ## Status:
+
 [![pages-build-deployment](https://github.com/SirKnubble/sirknubble.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/SirKnubble/sirknubble.github.io/actions/workflows/pages/pages-build-deployment)
+
 ## Structure
 
 ```bash
 sirknubble.github.io
 |
-+---css
-|   \---assets
-|       +---fonts
-|       \---images
-+---dist
-|   \---assets
-+---map
-|   +---css
-|   +---geojson
-|   +---icons
++---assets
+|   +---fonts
 |   \---images
-|       \---treasure
-+---old
-|   \---js
-\---projects
-    \---util
-        +---algorithms
-        +---r-place
+\---pages
+    +---gallery
+    +---lab
+    |   +---algorithms
+    |   +---bot
+    |   \---ui
+    |       +---fonts
+    |       +---js
+    |       \---style
+    \---tools
+        +---place
         |   +---liste
         |   \---map
-        \---ui
-            +---fonts
-            +---js
-            \---style
+        \---treasurehunt
+            +---css
+            +---geojson
+            +---icons
+            \---images
+                \---treasure
 ```
+
 ### ToDo:
 
 - Config Cursor Circle Zoom :hover
 - Fix Gallery Script
-
 
 <hr/>
 <br clear="both">
