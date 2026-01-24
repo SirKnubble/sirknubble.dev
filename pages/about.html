@@ -1,3 +1,249 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8fcee5f9f772568a7756af6fa27cc97cd5c3fc89329e3b459e20639d339ba80f
-size 8627
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return true" class="prevent-select">
+  <head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="assets/images/cat.png" />
+    <style data-tag="reset-style-sheet">
+      html {
+        line-height: 1.15;
+      }
+      body {
+        margin: 0;
+        cursor: url("/assets/images/cursor.png"), auto;
+      }
+      * {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+      }
+      div,
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background: var(--dl-color-gray-white);
+
+        fill: var(--dl-color-gray-black);
+      }
+    </style>
+  </head>
+  <body>
+    <link rel="stylesheet" href="../style.css" />
+    <div>
+      <link href="../index.css" rel="stylesheet" />
+
+      <div class="home-container">
+        <navbar-wrapper class="navbar-wrapper" rootclassname="navbarundefined">
+          <!--Navbar component-->
+          <header class="navbar-navbar navbarroot-class-name">
+            <img src="../assets/images/cat.png" class="navbar-branding-logo" />
+            <div class="navbar-nav-content">
+              <div class="navbar-nav-links1">
+                <span class="nav-link" style="cursor: not-allowed">Labs</span>
+                <span class="nav-link" style="cursor: not-allowed">Tools</span>
+                <span class="nav-link" style="cursor: not-allowed"
+                  >Gallery</span
+                >
+                <span class="nav-link" style="cursor: not-allowed">About</span>
+              </div>
+              <div class="home navbar-get-started">
+                <span class="navbar-text10">Home</span>
+              </div>
+            </div>
+            <div id="open-mobile-menu" class="navbar-hamburger home">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="navbar-icon10"
+              >
+                <rect
+                  x="1.5"
+                  y="1.5"
+                  rx="1"
+                  fill="currentColor"
+                  width="9"
+                  height="9"
+                ></rect>
+                <rect
+                  x="13.5"
+                  y="1.5"
+                  rx="1"
+                  fill="currentColor"
+                  width="9"
+                  height="9"
+                ></rect>
+                <rect
+                  x="13.5"
+                  y="13.5"
+                  rx="1"
+                  fill="currentColor"
+                  width="9"
+                  height="9"
+                ></rect>
+                <rect
+                  x="1.5"
+                  y="13.5"
+                  rx="1"
+                  fill="currentColor"
+                  width="9"
+                  height="9"
+                ></rect>
+              </svg>
+            </div>
+            <div id="mobile-menu" class="navbar-mobile-menu">
+              <div class="navbar-branding">
+                <img src="../assets/images/cat.png" class="navbar-image" />
+                <div id="close-mobile-menu" class="navbar-container1">
+                  <h1 viewBox="0 0 1024 1024">X</h1>
+                </div>
+              </div>
+              <div class="navbar-nav-links2">
+                <span>
+                  <fragment class="navbar-fragment2">
+                    <span
+                      class="navbar-text13 nav-link"
+                      style="cursor: not-allowed"
+                      >Labs</span
+                    >
+                  </fragment>
+                </span>
+                <span>
+                  <fragment class="home-fragment1" style="cursor: not-allowed">
+                    <span class="navbar-text13 nav-link">
+                      <span>Tools</span>
+                      <br />
+                    </span>
+                  </fragment>
+                </span>
+                <span>
+                  <fragment
+                    class="home-fragment2"
+                    style="cursor: not-allowed"
+                    onclick="window.open('projects/spotify.html');"
+                  >
+                    <span class="navbar-text13 nav-link">
+                      <span>Gallery</span>
+                      <br />
+                    </span>
+                  </fragment>
+                </span>
+                <span>
+                  <fragment class="home-fragment3" style="cursor: not-allowed">
+                    <span class="navbar-text13 nav-link">About</span>
+                  </fragment>
+                </span>
+              </div>
+              <div class="home">
+                <span>
+                  <fragment class="navbar-fragment1">
+                    <span class="navbar-text12">Home</span>
+                  </fragment>
+                </span>
+              </div>
+            </div>
+            <div>
+              <div class="navbar-container3">
+                <script defer="">
+                  const listenForUrlChangesMobileMenu = () => {
+                    let url = location.href;
+                    document.body.addEventListener(
+                      "click",
+                      () => {
+                        requestAnimationFrame(() => {
+                          if (url !== location.href) {
+                            runMobileMenuCodeEmbed();
+                            url = location.href;
+                          }
+                        });
+                      },
+                      true
+                    );
+                  };
+
+                  const runMobileMenuCodeEmbed = () => {
+                    // Mobile menu
+                    const mobileMenu = document.querySelector("#mobile-menu");
+
+                    // Buttons
+                    const closeButton =
+                      document.querySelector("#close-mobile-menu");
+                    const openButton =
+                      document.querySelector("#open-mobile-menu");
+
+                    // On openButton click, set the mobileMenu position left to -100vw
+                    openButton &&
+                      openButton.addEventListener("click", function () {
+                        mobileMenu.style.transform = "translateX(0%)";
+                      });
+
+                    // On closeButton click, set the mobileMenu position to 0vw
+                    closeButton &&
+                      closeButton.addEventListener("click", function () {
+                        mobileMenu.style.transform = "translateX(100%)";
+                      });
+                  };
+
+                  runMobileMenuCodeEmbed();
+                  listenForUrlChangesMobileMenu();
+                </script>
+              </div>
+            </div>
+          </header>
+        </navbar-wrapper>
+        <section class="home-section">
+          <div class="home-hero">
+            <div class="home-content">
+              <main class="home-main">
+                <header class="home-header">
+                  <h1 class="home-heading">About</h1>
+                </header>
+                <div class="home-buttons">
+                  <div
+                    class="home-get-started button"
+                    onclick="window.open('https://discord.com/users/473390696192016386', '_blank')"
+                  >
+                    <span class="home-text17">
+                      <span>Contact</span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </section>
+        <footer class="home-footer">
+          <span class="home-text20"
+            >SirKnubble ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script></span
+          >
+        </footer>
+      </div>
+    </div>
+    <div class="cursor"></div>
+    <script src="/main.js"></script>
+  </body>
+</html>

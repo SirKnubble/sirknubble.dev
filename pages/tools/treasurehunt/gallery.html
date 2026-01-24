@@ -1,3 +1,334 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dcfe1b3945273ebb0e010b691aeac98dbb2c28c46ecdbc2829c2f76dfc8bc759
-size 10390
+<!doctype html>
+<html lang="en" oncontextmenu="return true;">
+  <head>
+    <!-- Main -->
+    <link rel="icon" href="/css/assets/images/cat.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .lightbox-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        max-width: 98%;
+        max-height: 98%;
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+      .zoomed {
+        transform: translate(-50%, -50%) scale(1.5);
+        cursor: zoom-out;
+      }
+      #prev-btn,
+      #next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        font-size: 30px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1002;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+      #prev-btn:hover,
+      #next-btn:hover {
+        opacity: 1;
+      }
+      #prev-btn {
+        left: 20px;
+      }
+      #next-btn {
+        right: 20px;
+      }
+      #carousel {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        max-width: 80%;
+        overflow-x: auto;
+        z-index: 1002;
+      }
+      .carousel-thumb {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s;
+        border-radius: 8px;
+      }
+      .carousel-thumb:hover {
+        transform: scale(1.1);
+        border-color: white;
+      }
+      .carousel-thumb.active {
+        border-color: white;
+      }
+      #image-input {
+        position: absolute;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: 1px solid white;
+        padding: 8px;
+        width: 120px;
+        text-align: center;
+        border-radius: 5px;
+        z-index: 1002;
+      }
+      .gallery-button {
+        position: fixed;
+        top: 20px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+        transition: background 0.3s;
+        margin-left: 0px;
+      }
+      .gallery-button:hover {
+        background: rgba(0, 0, 0, 0.9);
+      }
+      #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+      }
+    </style>
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Hier prob error, letzte change switched to jquery, danach ohne min version, aber die ging local garnd, daher joar... -->
+    <title>sirknubble.dev - Gallery</title>
+  </head>
+
+  <body
+    class="gallery"
+    style="
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <!--  Nav-Bar  -->
+    <!--  <script id="replace_with_navbar" src="../js/nav.js"></script>  -->
+    <!--  Nav-Bar end -->
+    <div class="gallery-button" onclick="history.back()">
+      <a><i class="fa-solid fa-angle-left"></i>&nbsp;Back</a>
+    </div>
+    <hr />
+    <div id="links" style="margin-top: 60px"></div>
+    <script>
+      const linksDiv = document.getElementById("links");
+      linksDiv.innerHTML = "";
+      let currentIndex = 0;
+      for (let i = 1; i <= 296; i++) {
+        const a = document.createElement("a");
+        a.href = `images/treasure/treasure${i}.jpg`;
+        a.title = `Treasure ${i}`;
+        const img = document.createElement("img");
+        img.src = `images/treasure/treasure${i}.jpg`;
+        img.alt = `Treasure ${i}`;
+        img.style.width = "100px";
+        img.style.height = "100px";
+        img.style.margin = "5px";
+        img.style.borderRadius = "8px";
+        img.style.transition = "transform 0.3s";
+        img.onmouseover = function () {
+          this.style.transform = "scale(1.05)";
+        };
+        img.onmouseout = function () {
+          this.style.transform = "scale(1)";
+        };
+        img.style.cursor = "pointer";
+        img.dataset.index = i - 1; // 0-based
+        img.onclick = function (event) {
+          event.preventDefault();
+          openLightbox(parseInt(this.dataset.index));
+        };
+        a.appendChild(img);
+        linksDiv.appendChild(a);
+      }
+
+      function openLightbox(index) {
+        currentIndex = index;
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const captionDiv = document.getElementById("caption");
+        const input = document.getElementById("image-input");
+        lightbox.style.display = "block";
+        lightboxImg.src = `images/treasure/treasure${index + 1}.jpg`;
+        captionDiv.innerHTML = `Treasure ${index + 1} von 296`;
+        input.value = index + 1;
+        lightboxImg.classList.remove("zoomed");
+        updateCarousel();
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % 296;
+        openLightbox(currentIndex);
+      }
+
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + 296) % 296;
+        openLightbox(currentIndex);
+      }
+
+      let intervalId = null;
+
+      function startPrev() {
+        prevImage();
+        intervalId = setInterval(prevImage, 200);
+      }
+
+      function startNext() {
+        nextImage();
+        intervalId = setInterval(nextImage, 200);
+      }
+
+      function stopInterval() {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
+
+      function updateCarousel() {
+        const carousel = document.getElementById("carousel");
+        carousel.innerHTML = "";
+        for (let i = -7; i <= 7; i++) {
+          let idx = (currentIndex + i + 296) % 296;
+          const img = document.createElement("img");
+          img.src = `images/treasure/treasure${idx + 1}.jpg`;
+          img.className = "carousel-thumb";
+          if (i === 0) img.classList.add("active");
+          img.onclick = () => openLightbox(idx);
+          carousel.appendChild(img);
+        }
+      }
+
+      function toggleZoom() {
+        const img = document.getElementById("lightbox-img");
+        console.log("Toggling zoom, current classes:", img.className);
+        img.classList.toggle("zoomed");
+        console.log("After toggle:", img.className);
+      }
+
+      window.addEventListener("load", function () {
+        console.log("Binding handlers...");
+        document.querySelector(".close").onclick = function () {
+          console.log("Close clicked");
+          document.getElementById("lightbox").style.display = "none";
+        };
+
+        document.getElementById("lightbox").onclick = function (event) {
+          if (event.target === this) {
+            console.log("Background clicked");
+            this.style.display = "none";
+          }
+        };
+
+        document.getElementById("lightbox-img").onclick = function (event) {
+          event.stopPropagation();
+          console.log("Image clicked");
+          toggleZoom();
+        };
+        document.getElementById("prev-btn").onmousedown = startPrev;
+        document.getElementById("prev-btn").onmouseup = stopInterval;
+        document.getElementById("prev-btn").onmouseleave = stopInterval;
+        document.getElementById("next-btn").onmousedown = startNext;
+        document.getElementById("next-btn").onmouseup = stopInterval;
+        document.getElementById("next-btn").onmouseleave = stopInterval;
+        document.getElementById("image-input").onchange = function () {
+          const num = parseInt(this.value);
+          if (num >= 1 && num <= 296) {
+            openLightbox(num - 1);
+          }
+        };
+        console.log("Handlers bound");
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (document.getElementById("lightbox").style.display === "block") {
+          if (event.key === "ArrowRight") {
+            nextImage();
+          } else if (event.key === "ArrowLeft") {
+            prevImage();
+          } else if (event.key === "Escape") {
+            document.getElementById("lightbox").style.display = "none";
+          }
+        }
+      });
+      window.addEventListener("load", function () {
+        document.querySelector(".close").onclick = function () {
+          document.getElementById("lightbox").style.display = "none";
+        };
+
+        document.getElementById("lightbox").onclick = function (event) {
+          if (event.target === this) {
+            this.style.display = "none";
+          }
+        };
+
+        document.getElementById("lightbox-img").onclick = function (event) {
+          event.stopPropagation();
+          toggleZoom();
+        };
+
+        document.getElementById("image-input").onchange = function () {
+          const num = parseInt(this.value);
+          if (num >= 1 && num <= 296) {
+            openLightbox(num - 1);
+          }
+        };
+      });
+    </script>
+    <div class="cursor"></div>
+    <script src="/main.js"></script>
+    <div id="lightbox" class="lightbox">
+      <span class="close">&times;</span>
+      <input
+        type="number"
+        id="image-input"
+        placeholder="Bild Nr."
+        min="1"
+        max="296"
+      />
+      <button id="prev-btn">&lt;</button>
+      <button id="next-btn">&gt;</button>
+      <img class="lightbox-content" id="lightbox-img" />
+      <div id="caption"></div>
+      <div id="carousel"></div>
+    </div>
+  </body>
+</html>
